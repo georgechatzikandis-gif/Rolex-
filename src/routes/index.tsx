@@ -23,14 +23,6 @@ type Watch = {
 
 const WATCHES: Watch[] = [
   {
-    image: `${BASE}watches/crown-macro.jpg`,
-    model: 'PERPETUAL',
-    tag: 'Heritage',
-    headline: 'A Crown for\nEvery Achievement',
-    body: 'The mark of excellence. The symbol of perpetual precision, worn on every wrist that dares to excel.',
-    layout: 'dark-full',
-  },
-  {
     image: `${BASE}watches/gmt-steel.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Oystersteel',
@@ -90,12 +82,31 @@ function Home() {
   return (
     <main className="bg-ink text-porcelain overflow-x-hidden">
       <TopBar />
+      <VideoHero />
       {WATCHES.map((w, i) =>
         w.layout === 'dark-full'
           ? <DarkSection key={i} watch={w} />
           : <SplitSection key={i} watch={w} reverse={w.layout === 'split-reverse'} />,
       )}
     </main>
+  )
+}
+
+// ─── VideoHero ───────────────────────────────────────────────────────────────
+
+function VideoHero() {
+  return (
+    <section className="relative w-full h-screen overflow-hidden">
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src={`${BASE}hero.mp4`} type="video/mp4" />
+      </video>
+    </section>
   )
 }
 
