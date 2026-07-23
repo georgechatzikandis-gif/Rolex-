@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/luxury-watch-sections-k4x2x5]
+    branches: [main, claude/luxury-watch-sections-k4x2x5]
   workflow_dispatch:
 
 permissions:
