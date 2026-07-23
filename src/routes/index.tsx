@@ -5,6 +5,9 @@ import { useRef } from 'react'
 
 export const Route = createFileRoute('/')({ component: Home })
 
+// ─── Base path (handles GitHub Pages /Rolex-/ subpath) ───────────────────────
+const BASE = import.meta.env.BASE_URL
+
 // ─── Watch data ───────────────────────────────────────────────────────────────
 
 type Layout = 'dark-full' | 'split' | 'split-reverse'
@@ -20,7 +23,7 @@ type Watch = {
 
 const WATCHES: Watch[] = [
   {
-    image: '/watches/crown-macro.jpg',
+    image: `${BASE}watches/crown-macro.jpg`,
     model: 'PERPETUAL',
     tag: 'Heritage',
     headline: 'A Crown for\nEvery Achievement',
@@ -28,7 +31,7 @@ const WATCHES: Watch[] = [
     layout: 'dark-full',
   },
   {
-    image: '/watches/gmt-steel.jpg',
+    image: `${BASE}watches/gmt-steel.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Oystersteel',
     headline: 'Robust and\nFunctional',
@@ -36,7 +39,7 @@ const WATCHES: Watch[] = [
     layout: 'split',
   },
   {
-    image: '/watches/gmt-twotone.jpg',
+    image: `${BASE}watches/gmt-twotone.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Rolesor',
     headline: 'On World Time,\nCrossing Meridians',
@@ -44,7 +47,7 @@ const WATCHES: Watch[] = [
     layout: 'split-reverse',
   },
   {
-    image: '/watches/gmt-gold.jpg',
+    image: `${BASE}watches/gmt-gold.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Yellow Gold',
     headline: 'A Two-Colour\nVisual Hallmark',
@@ -52,7 +55,7 @@ const WATCHES: Watch[] = [
     layout: 'split',
   },
   {
-    image: '/watches/gmt-green.jpg',
+    image: `${BASE}watches/gmt-green.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Meteorite',
     headline: 'Travel Around\nthe Clock',
@@ -60,7 +63,7 @@ const WATCHES: Watch[] = [
     layout: 'dark-full',
   },
   {
-    image: '/watches/rm-01-black.jpg',
+    image: `${BASE}watches/rm-01-black.jpg`,
     model: 'RM 74-01',
     tag: 'Titanium Tourbillon',
     headline: 'The Skeleton\nPerfected',
@@ -68,7 +71,7 @@ const WATCHES: Watch[] = [
     layout: 'dark-full',
   },
   {
-    image: '/watches/rm-02-white.jpg',
+    image: `${BASE}watches/rm-02-white.jpg`,
     model: 'RM 74-02',
     tag: 'White Ceramic',
     headline: 'Radical\nHorology',

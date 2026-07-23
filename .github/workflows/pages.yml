@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [claude/luxury-watch-sections-k4x2x5]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static site
+        run: NITRO_PRESET=static VITE_BASE_PATH=/Rolex-/ VITE_ROUTER_BASE=/Rolex-/ npm run build
+        continue-on-error: true
+
+      - name: Assemble GitHub Pages output
+        run: |
+          mkdir -p .output/gh-pages
+          cp -r .output/public/assets .output/gh-pages/
+          cp -r .output/public/watches .output/gh-pages/
+          # Prerenderer writes /Rolex-/ route to Rolex-/index.html
+          if [ -f ".output/public/Rolex-/index.html" ]; then
+            cp ".output/public/Rolex-/index.html" .output/gh-pages/index.html
+            echo "✓ index.html found and copied"
+          else
+            echo "Prerender output structure:"
+            find .output/public -type f | sort
+            exit 1
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/gh-pages
+
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
