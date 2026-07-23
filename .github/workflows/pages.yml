@@ -41,6 +41,7 @@ jobs:
           mkdir -p .output/gh-pages
           cp -r .output/public/assets .output/gh-pages/
           cp -r .output/public/watches .output/gh-pages/
+          cp .output/public/hero.mp4 .output/gh-pages/
           # Prerenderer writes /Rolex-/ route to Rolex-/index.html
           if [ -f ".output/public/Rolex-/index.html" ]; then
             cp ".output/public/Rolex-/index.html" .output/gh-pages/index.html
