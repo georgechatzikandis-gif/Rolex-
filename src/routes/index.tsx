@@ -136,7 +136,7 @@ function HeroSection() {
       />
 
       {/* Brand — top */}
-      <div className="relative z-10 flex items-center justify-center gap-4 py-8 border-b border-porcelain/15 bg-ink/60 backdrop-blur-sm select-none">
+      <div className="relative z-10 flex items-center justify-center gap-4 py-8 border-b border-porcelain/20 select-none">
         <svg width="22" height="20" viewBox="0 0 30 26" fill="none" className="text-gold">
           <path d="M3 23V13.5L8.5 19L15 5L21.5 19L27 13.5V23H3Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" fill="none" />
           <rect x="3" y="23" width="24" height="2" rx="0.4" fill="currentColor" />
@@ -144,19 +144,19 @@ function HeroSection() {
           <circle cx="3" cy="13.5" r="1.4" fill="currentColor" />
           <circle cx="27" cy="13.5" r="1.4" fill="currentColor" />
         </svg>
-        <span className="font-serif tracking-[0.35em] text-base text-porcelain/90" style={{ letterSpacing: '0.35em' }}>PERPETUAL</span>
+        <span className="font-serif tracking-[0.35em] text-base text-porcelain" style={{ letterSpacing: '0.35em' }}>PERPETUAL</span>
       </div>
 
       {/* Nav — fills remaining space */}
       <nav className="relative z-10 flex flex-1">
-        <button className="flex-1 flex flex-col items-center justify-center gap-2 bg-ink/50 hover:bg-ink/70 transition-colors duration-400 border-r border-porcelain/15 group backdrop-blur-sm">
-          <span className="font-serif text-3xl text-porcelain/90 group-hover:text-porcelain">Watches</span>
-          <span className="text-[10px] tracking-[0.3em] text-porcelain/40 uppercase group-hover:text-gold transition-colors duration-300">Explore Collection</span>
+        <button className="flex-1 flex flex-col items-center justify-center gap-2 border-r border-porcelain/20 group hover:bg-white/5 transition-colors duration-300">
+          <span className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300">Watches</span>
+          <span className="text-[10px] tracking-[0.3em] text-porcelain/50 uppercase">Explore Collection</span>
         </button>
-        <button className="flex-1 flex flex-col items-center justify-center gap-2 bg-ink/50 hover:bg-ink/70 transition-colors duration-400 group backdrop-blur-sm">
-          <span className="font-serif text-3xl text-porcelain/90 group-hover:text-porcelain">Contact</span>
-          <span className="text-[10px] tracking-[0.3em] text-porcelain/40 uppercase group-hover:text-gold transition-colors duration-300">Get in Touch</span>
-        </button>
+        <a href="tel:+306944955367" className="flex-1 flex flex-col items-center justify-center gap-2 group hover:bg-white/5 transition-colors duration-300">
+          <span className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300">Call Us</span>
+          <span className="text-[10px] tracking-[0.3em] text-porcelain/50 uppercase">+30 694 495 5367</span>
+        </a>
       </nav>
     </section>
   )
