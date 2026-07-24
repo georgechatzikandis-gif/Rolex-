@@ -145,31 +145,28 @@ function VideoHero() {
 
 function TopBar() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-8 py-6 bg-ink/85 backdrop-blur-md border-b border-porcelain/10">
-      {/* Logo + brand */}
-      <div className="flex items-center gap-4 select-none">
-        <svg width="34" height="30" viewBox="0 0 30 26" fill="none" className="text-gold">
-          <path
-            d="M3 23V13.5L8.5 19L15 5L21.5 19L27 13.5V23H3Z"
-            stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" fill="none"
-          />
+    <header className="fixed top-0 inset-x-0 z-50 bg-ink/90 backdrop-blur-md border-b border-porcelain/10">
+      {/* Brand row */}
+      <div className="flex items-center justify-center gap-4 pt-4 pb-3 border-b border-porcelain/10 select-none">
+        <svg width="20" height="18" viewBox="0 0 30 26" fill="none" className="text-gold">
+          <path d="M3 23V13.5L8.5 19L15 5L21.5 19L27 13.5V23H3Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" fill="none" />
           <rect x="3" y="23" width="24" height="2" rx="0.4" fill="currentColor" />
           <circle cx="15" cy="5" r="1.4" fill="currentColor" />
           <circle cx="3" cy="13.5" r="1.4" fill="currentColor" />
           <circle cx="27" cy="13.5" r="1.4" fill="currentColor" />
         </svg>
-        <h1 className="font-serif tracking-[0.32em] text-lg text-porcelain/90" style={{ letterSpacing: '0.32em' }}>
-          PERPETUAL
-        </h1>
+        <span className="font-serif tracking-[0.35em] text-sm text-porcelain/80" style={{ letterSpacing: '0.35em' }}>PERPETUAL</span>
       </div>
 
-      {/* Nav */}
-      <nav className="flex items-center gap-4">
-        <button className="text-sm tracking-[0.22em] text-porcelain/75 uppercase hover:text-porcelain transition-colors duration-300 px-6 py-4 min-w-[110px]">
-          Watches
+      {/* Nav banner — two full-width sections */}
+      <nav className="flex">
+        <button className="flex-1 flex flex-col items-center justify-center gap-1 py-5 hover:bg-porcelain/5 transition-colors duration-300 border-r border-porcelain/10 group">
+          <span className="font-serif text-xl text-porcelain/90 group-hover:text-porcelain tracking-wide">Watches</span>
+          <span className="text-[9px] tracking-[0.3em] text-porcelain/35 uppercase group-hover:text-gold transition-colors duration-300">Explore Collection</span>
         </button>
-        <button className="text-sm tracking-[0.22em] text-porcelain uppercase hover:text-gold transition-colors duration-300 border border-porcelain/40 hover:border-gold px-6 py-4 min-w-[110px]">
-          Contact
+        <button className="flex-1 flex flex-col items-center justify-center gap-1 py-5 hover:bg-porcelain/5 transition-colors duration-300 group">
+          <span className="font-serif text-xl text-porcelain/90 group-hover:text-porcelain tracking-wide">Contact</span>
+          <span className="text-[9px] tracking-[0.3em] text-porcelain/35 uppercase group-hover:text-gold transition-colors duration-300">Get in Touch</span>
         </button>
       </nav>
     </header>
