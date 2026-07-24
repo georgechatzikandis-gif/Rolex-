@@ -137,7 +137,7 @@ function VideoHero() {
   return (
     <section className="relative w-full h-screen bg-ink">
       <video
-        className="absolute inset-0 w-full h-full object-contain"
+        className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         muted
         loop
