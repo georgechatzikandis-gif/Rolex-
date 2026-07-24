@@ -300,7 +300,7 @@ function HeroSection() {
 function ViberButton() {
   const [open, setOpen] = useState(false)
   const [name, setName] = useState('')
-  const [message, setMessage] = useState('')
+  const [msg, setMsg] = useState('')
 
   const handleSend = () => {
     window.open('viber://chat?number=+306944955367', '_blank')
@@ -308,57 +308,60 @@ function ViberButton() {
 
   return (
     <>
-      {/* Floating circle — speech bubble icon */}
+      {/* Floating circle — filled chat bubble */}
       <button
         onClick={() => setOpen(o => !o)}
         aria-label="Chat"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-transform duration-200 hover:scale-110 active:scale-95"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center active:scale-95 transition-transform duration-150"
         style={{ background: '#7360F2' }}
       >
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
-          <path d="M12 2C6.48 2 2 6.02 2 11c0 2.67 1.19 5.07 3.08 6.74L4 20l2.54-1.27C7.91 19.55 9.9 20 12 20c5.52 0 10-4.02 10-9S17.52 2 12 2zm0 16c-1.85 0-3.58-.5-5.06-1.37l-.36-.21-2.18 1.09.74-2.28-.23-.34C3.74 13.8 3 12.46 3 11c0-4.41 4.03-8 9-8s9 3.59 9 8-4.03 8-9 8z"/>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
         </svg>
       </button>
 
       {/* Popup */}
       {open && (
         <div
-          className="fixed bottom-24 right-3 left-3 z-50 rounded-3xl overflow-hidden shadow-2xl"
-          style={{ background: '#0d1b3e', maxWidth: 460, margin: '0 auto' }}
+          className="fixed bottom-24 right-3 left-3 z-50 rounded-2xl overflow-hidden shadow-2xl"
+          style={{ background: '#1e2a4a', maxWidth: 460, margin: '0 auto' }}
         >
-          {/* Header — purple gradient */}
+          {/* Header */}
           <div
-            className="flex items-center justify-between px-5 py-4"
-            style={{ background: 'linear-gradient(135deg, #6B4FE0 0%, #8B6FFF 100%)' }}
+            className="flex items-center gap-4 px-5 py-4"
+            style={{ background: 'linear-gradient(135deg, #6B58EE 0%, #9B8AFF 100%)' }}
           >
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-full bg-white/25 flex items-center justify-center shrink-0 text-white font-bold text-sm tracking-wide">
-                PW
-              </div>
-              <div>
-                <div className="text-white font-bold text-[15px]">Perpetual Watches</div>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className="w-2 h-2 rounded-full bg-green-400 inline-block shrink-0" />
-                  <span className="text-white/80 text-xs">Συνήθως απαντάμε σύντομα</span>
-                </div>
+            {/* Gray avatar */}
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-sm"
+              style={{ background: 'rgba(255,255,255,0.22)' }}
+            >
+              PW
+            </div>
+            <div className="flex-1">
+              <div className="text-white font-bold text-base leading-tight">Perpetual Watches</div>
+              <div className="flex items-center gap-1.5 mt-1">
+                <span className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
+                <span className="text-white/75 text-xs">Συνήθως απαντάμε σύντομα</span>
               </div>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              className="text-white/60 hover:text-white text-xl leading-none w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/15 transition-colors"
-            >✕</button>
           </div>
 
           {/* Body */}
-          <div className="px-5 py-5" style={{ background: '#0d1b3e' }}>
-            {/* Greeting bubble */}
-            <div className="flex items-start gap-3 mb-5">
-              <div className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-xs"
-                style={{ background: 'linear-gradient(135deg, #6B4FE0 0%, #8B6FFF 100%)' }}>
+          <div className="px-4 pt-5 pb-5" style={{ background: '#1e2a4a' }}>
+
+            {/* Chat bubble row — avatar bottom-left, bubble right */}
+            <div className="flex items-end gap-3 mb-5">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-[11px]"
+                style={{ background: '#7360F2' }}
+              >
                 PW
               </div>
-              <div className="rounded-2xl rounded-tl-none px-4 py-3 text-white text-sm leading-relaxed"
-                style={{ background: '#1a2d54' }}>
+              <div
+                className="rounded-2xl rounded-bl-none px-4 py-3 text-white text-sm leading-relaxed flex-1"
+                style={{ background: '#2d3d65' }}
+              >
                 Γεια σας! 👋 Πώς μπορούμε να σας βοηθήσουμε;
               </div>
             </div>
@@ -371,33 +374,33 @@ function ViberButton() {
               placeholder="Το όνομά σας"
               className="w-full rounded-xl px-4 py-3 text-white text-sm mb-3 outline-none"
               style={{
-                background: 'transparent',
+                background: 'rgba(255,255,255,0.05)',
                 border: '1.5px solid #7360F2',
                 color: 'white',
-              }}
+              } as CSSProperties}
             />
 
             {/* Message textarea */}
             <textarea
-              value={message}
-              onChange={e => setMessage(e.target.value)}
+              value={msg}
+              onChange={e => setMsg(e.target.value)}
               placeholder="Γράψτε το μήνυμά σας..."
-              rows={3}
+              rows={4}
               className="w-full rounded-xl px-4 py-3 text-white text-sm mb-4 outline-none resize-none"
               style={{
-                background: 'transparent',
-                border: '1.5px solid rgba(115,96,242,0.45)',
+                background: 'rgba(255,255,255,0.05)',
+                border: '1.5px solid rgba(115,96,242,0.5)',
                 color: 'white',
-              }}
+              } as CSSProperties}
             />
 
             {/* Send button */}
             <button
               onClick={handleSend}
               className="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-white font-semibold text-sm active:opacity-80 transition-opacity"
-              style={{ background: 'linear-gradient(135deg, #6B4FE0 0%, #8B6FFF 100%)' }}
+              style={{ background: '#7360F2' }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
               </svg>
               Αποστολή
