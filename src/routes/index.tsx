@@ -1,7 +1,7 @@
 'use client'
 import { createFileRoute } from '@tanstack/react-router'
 import { motion, useInView } from 'motion/react'
-import { type CSSProperties, useRef } from 'react'
+import { type CSSProperties, useEffect, useRef } from 'react'
 
 export const Route = createFileRoute('/')({ component: Home })
 
@@ -95,24 +95,40 @@ function Home() {
 // ─── VideoHero ───────────────────────────────────────────────────────────────
 
 function VideoHero() {
+  const overlayRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const el = overlayRef.current
+    if (!el) return
+    let startY = 0
+    const onStart = (e: TouchEvent) => { startY = e.touches[0].clientY }
+    const onMove = (e: TouchEvent) => {
+      const delta = startY - e.touches[0].clientY
+      startY = e.touches[0].clientY
+      window.scrollBy(0, delta)
+    }
+    el.addEventListener('touchstart', onStart, { passive: true })
+    el.addEventListener('touchmove', onMove, { passive: true })
+    return () => {
+      el.removeEventListener('touchstart', onStart)
+      el.removeEventListener('touchmove', onMove)
+    }
+  }, [])
+
   return (
-    <section className="relative w-full h-screen bg-ink flex items-center justify-center select-none">
+    <section className="relative w-full h-screen bg-ink">
       <video
-        className="h-full w-full object-contain"
+        className="absolute inset-0 w-full h-full object-contain"
         autoPlay
         muted
         loop
         playsInline
         disablePictureInPicture
-        style={{ pointerEvents: 'none', touchAction: 'none' }}
+        style={{ pointerEvents: 'none' } as CSSProperties}
       >
         <source src={`${BASE}hero.mp4`} type="video/mp4" />
       </video>
-      {/* iOS WebKit fix: overlay that passes scroll to the page */}
-      <div
-        className="absolute inset-0"
-        style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' } as CSSProperties}
-      />
+      <div ref={overlayRef} className="absolute inset-0 z-10" />
     </section>
   )
 }
