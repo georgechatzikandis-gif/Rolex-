@@ -246,29 +246,49 @@ function HeroSection() {
       {/* Nav — fills remaining space */}
       <nav className="relative z-10 flex flex-1">
         <motion.button
-          whileTap={{ scale: 0.94, backgroundColor: 'rgba(255,255,255,0.08)' }}
-          transition={{ type: 'spring', stiffness: 450, damping: 28 }}
-          className="flex-1 flex flex-col items-center justify-center gap-2 border-r border-porcelain/20 group hover:bg-white/5 transition-colors duration-300"
+          initial="rest"
+          whileTap="pressed"
+          variants={{
+            rest: { scale: 1, backgroundColor: 'rgba(255,255,255,0)' },
+            pressed: { scale: 0.91, backgroundColor: 'rgba(201,169,110,0.12)' },
+          }}
+          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+          className="flex-1 flex flex-col items-center justify-center gap-2 border-r border-porcelain/20"
+          style={{ touchAction: 'manipulation' }}
         >
           <motion.span
-            className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300"
-            whileTap={{ color: '#C9A96E' }}
-            transition={{ duration: 0.15 }}
+            className="font-serif text-3xl"
+            variants={{ rest: { color: '#F5F0E8' }, pressed: { color: '#C9A96E' } }}
+            transition={{ duration: 0.12 }}
           >Watches</motion.span>
-          <span className="text-[10px] tracking-[0.3em] text-porcelain/50 uppercase">Explore Collection</span>
+          <motion.span
+            className="text-[10px] tracking-[0.3em] uppercase"
+            variants={{ rest: { color: 'rgba(245,240,232,0.45)' }, pressed: { color: 'rgba(201,169,110,0.7)' } }}
+            transition={{ duration: 0.12 }}
+          >Explore Collection</motion.span>
         </motion.button>
         <motion.a
           href="tel:+306944955367"
-          whileTap={{ scale: 0.94, backgroundColor: 'rgba(255,255,255,0.08)' }}
-          transition={{ type: 'spring', stiffness: 450, damping: 28 }}
-          className="flex-1 flex flex-col items-center justify-center gap-2 group hover:bg-white/5 transition-colors duration-300"
+          initial="rest"
+          whileTap="pressed"
+          variants={{
+            rest: { scale: 1, backgroundColor: 'rgba(255,255,255,0)' },
+            pressed: { scale: 0.91, backgroundColor: 'rgba(201,169,110,0.12)' },
+          }}
+          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+          className="flex-1 flex flex-col items-center justify-center gap-2"
+          style={{ touchAction: 'manipulation' }}
         >
           <motion.span
-            className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300"
-            whileTap={{ color: '#C9A96E' }}
-            transition={{ duration: 0.15 }}
+            className="font-serif text-3xl"
+            variants={{ rest: { color: '#F5F0E8' }, pressed: { color: '#C9A96E' } }}
+            transition={{ duration: 0.12 }}
           >Call Us</motion.span>
-          <span className="text-[10px] tracking-[0.3em] text-porcelain/50 uppercase">+30 694 495 5367</span>
+          <motion.span
+            className="text-[10px] tracking-[0.3em] uppercase"
+            variants={{ rest: { color: 'rgba(245,240,232,0.45)' }, pressed: { color: 'rgba(201,169,110,0.7)' } }}
+            transition={{ duration: 0.12 }}
+          >+30 694 495 5367</motion.span>
         </motion.a>
       </nav>
     </section>
@@ -296,32 +316,39 @@ function ViberButton() {
 
       {/* Popup */}
       {open && (
-        <div className="fixed bottom-24 right-4 z-50 rounded-2xl overflow-hidden shadow-2xl" style={{ background: '#1a1a2e', width: 'min(340px, calc(100vw - 2rem))' }}>
+        <div className="fixed bottom-24 right-3 left-3 z-50 rounded-3xl overflow-hidden shadow-2xl" style={{ background: '#1a1a2e', maxWidth: 480, margin: '0 auto' }}>
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4" style={{ background: '#7360F2' }}>
-            <div className="flex items-center gap-3">
-              <svg width="24" height="24" viewBox="0 0 32 32" fill="white">
-                <path d="M16 2C8.27 2 2 8.05 2 15.5c0 3.6 1.43 6.87 3.76 9.3L4 28l3.6-1.1A13.8 13.8 0 0016 29c7.73 0 14-6.05 14-13.5S23.73 2 16 2zm6.3 17.4c-.28.8-1.6 1.52-2.22 1.6-.56.08-1.27.12-2.04-.13-.47-.15-1.07-.35-1.84-.68-3.22-1.38-5.3-4.6-5.46-4.81-.16-.22-1.3-1.73-1.3-3.3 0-1.57.82-2.35 1.12-2.67.3-.33.65-.41.87-.41h.62c.2 0 .47.08.73.56.28.5 1.28 3.13 1.38 3.36.1.22.17.48.03.77-.13.3-.2.48-.4.73l-.43.5c-.18.17-.37.36-.16.7.22.35.97 1.6 2.08 2.6 1.43 1.27 2.64 1.66 3.01 1.85.37.18.58.15.8-.09l.73-.87c.23-.3.46-.24.77-.14l2.45 1.15c.28.13.47.2.54.32.08.22-.06.9-.27 1.46z"/>
-              </svg>
+          <div className="flex items-center justify-between px-6 py-5" style={{ background: '#7360F2' }}>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="white">
+                  <path d="M16 2C8.27 2 2 8.05 2 15.5c0 3.6 1.43 6.87 3.76 9.3L4 28l3.6-1.1A13.8 13.8 0 0016 29c7.73 0 14-6.05 14-13.5S23.73 2 16 2zm6.3 17.4c-.28.8-1.6 1.52-2.22 1.6-.56.08-1.27.12-2.04-.13-.47-.15-1.07-.35-1.84-.68-3.22-1.38-5.3-4.6-5.46-4.81-.16-.22-1.3-1.73-1.3-3.3 0-1.57.82-2.35 1.12-2.67.3-.33.65-.41.87-.41h.62c.2 0 .47.08.73.56.28.5 1.28 3.13 1.38 3.36.1.22.17.48.03.77-.13.3-.2.48-.4.73l-.43.5c-.18.17-.37.36-.16.7.22.35.97 1.6 2.08 2.6 1.43 1.27 2.64 1.66 3.01 1.85.37.18.58.15.8-.09l.73-.87c.23-.3.46-.24.77-.14l2.45 1.15c.28.13.47.2.54.32.08.22-.06.9-.27 1.46z"/>
+                </svg>
+              </div>
               <div>
-                <div className="text-white font-semibold text-base">Viber</div>
-                <div className="text-white/70 text-xs">Συνήθως απαντάμε άμεσα</div>
+                <div className="text-white font-bold text-lg">Perpetual Watches</div>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
+                  <span className="text-white/80 text-sm">Συνήθως απαντάμε άμεσα</span>
+                </div>
               </div>
             </div>
-            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white text-xl leading-none w-8 h-8 flex items-center justify-center">✕</button>
+            <button onClick={() => setOpen(false)} className="text-white/60 hover:text-white text-2xl leading-none w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">✕</button>
           </div>
 
           {/* Body */}
-          <div className="px-6 py-7">
-            <p className="text-porcelain/80 text-base leading-relaxed mb-6">
-              Έχετε ερωτήσεις για κάποιο ρολόι; Στείλτε μας μήνυμα στο Viber και θα σας απαντήσουμε άμεσα.
-            </p>
+          <div className="px-7 py-8">
+            <div className="bg-white/5 rounded-2xl px-5 py-5 mb-6">
+              <p className="text-porcelain/90 text-base leading-relaxed">
+                Έχετε ερωτήσεις για κάποιο ρολόι; Στείλτε μας μήνυμα στο Viber και θα σας απαντήσουμε άμεσα.
+              </p>
+            </div>
             <a
               href="viber://chat?number=+306944955367"
-              className="flex items-center justify-center gap-3 w-full text-center text-white text-sm font-semibold tracking-widest uppercase py-4 rounded-xl transition-opacity duration-200 hover:opacity-90"
+              className="flex items-center justify-center gap-3 w-full text-center text-white text-base font-bold tracking-widest uppercase py-5 rounded-2xl transition-opacity duration-200 active:opacity-80"
               style={{ background: '#7360F2' }}
             >
-              <svg width="18" height="18" viewBox="0 0 32 32" fill="white">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="white">
                 <path d="M16 2C8.27 2 2 8.05 2 15.5c0 3.6 1.43 6.87 3.76 9.3L4 28l3.6-1.1A13.8 13.8 0 0016 29c7.73 0 14-6.05 14-13.5S23.73 2 16 2zm6.3 17.4c-.28.8-1.6 1.52-2.22 1.6-.56.08-1.27.12-2.04-.13-.47-.15-1.07-.35-1.84-.68-3.22-1.38-5.3-4.6-5.46-4.81-.16-.22-1.3-1.73-1.3-3.3 0-1.57.82-2.35 1.12-2.67.3-.33.65-.41.87-.41h.62c.2 0 .47.08.73.56.28.5 1.28 3.13 1.38 3.36.1.22.17.48.03.77-.13.3-.2.48-.4.73l-.43.5c-.18.17-.37.36-.16.7.22.35.97 1.6 2.08 2.6 1.43 1.27 2.64 1.66 3.01 1.85.37.18.58.15.8-.09l.73-.87c.23-.3.46-.24.77-.14l2.45 1.15c.28.13.47.2.54.32.08.22-.06.9-.27 1.46z"/>
               </svg>
               Έναρξη Συνομιλίας
