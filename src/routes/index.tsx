@@ -146,19 +146,20 @@ function VideoHero() {
 function TopBar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-8 py-5">
-      <div className="flex flex-col gap-[5px] w-5 cursor-pointer">
-        <span className="block w-full h-px bg-porcelain/70" />
-        <span className="block w-3 h-px bg-porcelain/70" />
-      </div>
       <h1
         className="font-serif tracking-[0.35em] text-lg text-porcelain/90 select-none"
         style={{ letterSpacing: '0.35em' }}
       >
         PERPETUAL
       </h1>
-      <button className="text-[10px] tracking-[0.3em] text-porcelain/50 uppercase hover:text-porcelain/90 transition-colors duration-300">
-        Explore
-      </button>
+      <nav className="flex items-center gap-8">
+        <button className="text-[10px] tracking-[0.3em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300">
+          Watches
+        </button>
+        <button className="text-[10px] tracking-[0.3em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300 border border-porcelain/20 hover:border-porcelain/60 px-4 py-2">
+          Contact
+        </button>
+      </nav>
     </header>
   )
 }
