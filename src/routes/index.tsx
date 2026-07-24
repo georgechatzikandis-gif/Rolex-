@@ -72,6 +72,29 @@ const WATCHES: Watch[] = [
   },
 ]
 
+// ─── Brand data ──────────────────────────────────────────────────────────────
+
+const BRANDS = [
+  {
+    name: 'Rolex',
+    sub: 'Crown Collection',
+    year: 'Since 1905',
+    image: `${BASE}watches/gmt-steel.jpg`,
+  },
+  {
+    name: 'Richard Mille',
+    sub: 'Haute Horlogerie',
+    year: 'Since 2001',
+    image: `${BASE}watches/rm-01-black.jpg`,
+  },
+  {
+    name: 'Daytona',
+    sub: 'Racing Heritage',
+    year: 'Since 1963',
+    image: `${BASE}watches/gmt-gold.jpg`,
+  },
+]
+
 // ─── Ease ─────────────────────────────────────────────────────────────────────
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
@@ -82,6 +105,7 @@ function Home() {
   return (
     <main className="bg-ink text-porcelain">
       <HeroSection />
+      <BrandsCarousel />
       {WATCHES.map((w, i) =>
         w.layout === 'dark-full'
           ? <DarkSection key={i} watch={w} />
@@ -89,6 +113,78 @@ function Home() {
       )}
       <ViberButton />
     </main>
+  )
+}
+
+// ─── BrandsCarousel ──────────────────────────────────────────────────────────
+
+function BrandsCarousel() {
+  const ref = useRef<HTMLElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-10% 0px' })
+
+  return (
+    <section ref={ref} className="py-20 bg-ink overflow-hidden">
+      <style>{`.brands-track::-webkit-scrollbar{display:none}`}</style>
+
+      <div className="px-8 mb-10">
+        <motion.p
+          className="text-[10px] tracking-[0.28em] text-gold uppercase mb-3"
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: EASE }}
+        >
+          The Houses
+        </motion.p>
+        <motion.h2
+          className="font-serif text-4xl text-porcelain"
+          initial={{ opacity: 0, y: 18 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+        >
+          Our Brands
+        </motion.h2>
+      </div>
+
+      <div
+        className="brands-track flex gap-4 overflow-x-auto px-8 pb-6"
+        style={{
+          scrollSnapType: 'x mandatory' as CSSProperties['scrollSnapType'],
+          WebkitOverflowScrolling: 'touch' as CSSProperties['WebkitOverflowScrolling'],
+          scrollbarWidth: 'none' as CSSProperties['scrollbarWidth'],
+        }}
+      >
+        {BRANDS.map((brand, i) => (
+          <motion.div
+            key={brand.name}
+            className="relative flex-shrink-0 rounded-2xl overflow-hidden"
+            style={{
+              width: 'min(72vw, 300px)',
+              height: '480px',
+              scrollSnapAlign: 'start',
+            }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15 + i * 0.13, ease: EASE }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <img
+              src={brand.image}
+              alt={brand.name}
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-7">
+              <p className="text-[9px] tracking-[0.32em] text-gold uppercase mb-2">{brand.year}</p>
+              <h3 className="font-serif text-[2rem] leading-tight text-porcelain mb-2">{brand.name}</h3>
+              <div className="flex items-center gap-3">
+                <span className="text-[9px] tracking-[0.25em] text-porcelain/50 uppercase">{brand.sub}</span>
+                <div className="h-px w-8 bg-gold/50 shrink-0" />
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
   )
 }
 
