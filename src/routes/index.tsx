@@ -1,7 +1,7 @@
 'use client'
 import { createFileRoute } from '@tanstack/react-router'
 import { motion, useInView } from 'motion/react'
-import { useRef } from 'react'
+import { type CSSProperties, useRef } from 'react'
 
 export const Route = createFileRoute('/')({ component: Home })
 
@@ -96,17 +96,23 @@ function Home() {
 
 function VideoHero() {
   return (
-    <section className="relative w-full h-screen bg-ink flex items-center justify-center">
+    <section className="relative w-full h-screen bg-ink flex items-center justify-center select-none">
       <video
-        className="h-full w-full object-contain pointer-events-none"
+        className="h-full w-full object-contain"
         autoPlay
         muted
         loop
         playsInline
         disablePictureInPicture
+        style={{ pointerEvents: 'none', touchAction: 'none' }}
       >
         <source src={`${BASE}hero.mp4`} type="video/mp4" />
       </video>
+      {/* iOS WebKit fix: overlay that passes scroll to the page */}
+      <div
+        className="absolute inset-0"
+        style={{ touchAction: 'pan-y', WebkitOverflowScrolling: 'touch' } as CSSProperties}
+      />
     </section>
   )
 }
