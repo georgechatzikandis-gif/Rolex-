@@ -120,7 +120,7 @@ function VideoHero() {
   }, [])
 
   return (
-    <section className="relative w-full h-screen bg-ink overflow-hidden">
+    <section className="relative w-full h-screen bg-ink">
       <video
         ref={videoRef}
         src={`${BASE}hero.mp4`}
