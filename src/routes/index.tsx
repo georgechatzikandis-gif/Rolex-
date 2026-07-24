@@ -23,14 +23,6 @@ type Watch = {
 
 const WATCHES: Watch[] = [
   {
-    image: `${BASE}watches/crown-macro.jpg`,
-    model: 'PERPETUAL',
-    tag: 'Heritage',
-    headline: 'A Crown for\nEvery Achievement',
-    body: 'The mark of excellence. The symbol of perpetual precision, worn on every wrist that dares to excel.',
-    layout: 'dark-full',
-  },
-  {
     image: `${BASE}watches/gmt-steel.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Oystersteel',
@@ -90,12 +82,31 @@ function Home() {
   return (
     <main className="bg-ink text-porcelain overflow-x-hidden">
       <TopBar />
+      <VideoHero />
       {WATCHES.map((w, i) =>
         w.layout === 'dark-full'
           ? <DarkSection key={i} watch={w} />
           : <SplitSection key={i} watch={w} reverse={w.layout === 'split-reverse'} />,
       )}
     </main>
+  )
+}
+
+// ─── VideoHero ───────────────────────────────────────────────────────────────
+
+function VideoHero() {
+  return (
+    <section className="relative w-full h-screen overflow-hidden">
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src={`${BASE}hero.mp4`} type="video/mp4" />
+      </video>
+    </section>
   )
 }
 
@@ -122,33 +133,32 @@ function TopBar() {
 }
 
 // ─── DarkSection ─────────────────────────────────────────────────────────────
-// Full-bleed image with gradient overlay, text bottom-left
+// Image on top, text panel below — no overlay so the image is fully visible
 
 function DarkSection({ watch }: { watch: Watch }) {
   const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-18% 0px' })
+  const inView = useInView(ref, { once: true, margin: '-12% 0px' })
 
   return (
-    <section ref={ref} className="relative min-h-screen overflow-hidden">
-      {/* Image — subtle Ken Burns on enter */}
-      <motion.div
-        className="absolute inset-0"
-        initial={{ scale: 1.07 }}
-        animate={inView ? { scale: 1 } : { scale: 1.07 }}
-        transition={{ duration: 1.8, ease: EASE }}
-      >
-        <img
-          src={watch.image}
-          alt={watch.model}
-          className="w-full h-full object-cover object-center"
-        />
-      </motion.div>
+    <section ref={ref} className="flex flex-col min-h-screen">
+      {/* Image — Ken Burns on enter, takes upper portion */}
+      <div className="relative overflow-hidden flex-1 min-h-[60vw] lg:min-h-[65vh]">
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.07 }}
+          animate={inView ? { scale: 1 } : { scale: 1.07 }}
+          transition={{ duration: 1.8, ease: EASE }}
+        >
+          <img
+            src={watch.image}
+            alt={watch.model}
+            className="w-full h-full object-cover object-top"
+          />
+        </motion.div>
+      </div>
 
-      {/* Gradient — stronger at bottom for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/30 to-ink/10 pointer-events-none" />
-
-      {/* Text */}
-      <div className="relative z-10 flex flex-col justify-end min-h-screen px-8 pb-16 lg:px-16 lg:pb-20">
+      {/* Text panel below the image */}
+      <div className="bg-ink px-8 py-12 lg:px-16 lg:py-16">
         <TextBlock watch={watch} inView={inView} />
       </div>
     </section>
