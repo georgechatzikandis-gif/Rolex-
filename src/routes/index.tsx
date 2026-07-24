@@ -149,14 +149,31 @@ function HeroSection() {
 
       {/* Nav — fills remaining space */}
       <nav className="relative z-10 flex flex-1">
-        <button className="flex-1 flex flex-col items-center justify-center gap-2 border-r border-porcelain/20 group hover:bg-white/5 transition-colors duration-300">
-          <span className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300">Watches</span>
+        <motion.button
+          whileTap={{ scale: 0.94, backgroundColor: 'rgba(255,255,255,0.08)' }}
+          transition={{ type: 'spring', stiffness: 450, damping: 28 }}
+          className="flex-1 flex flex-col items-center justify-center gap-2 border-r border-porcelain/20 group hover:bg-white/5 transition-colors duration-300"
+        >
+          <motion.span
+            className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300"
+            whileTap={{ color: '#C9A96E' }}
+            transition={{ duration: 0.15 }}
+          >Watches</motion.span>
           <span className="text-[10px] tracking-[0.3em] text-porcelain/50 uppercase">Explore Collection</span>
-        </button>
-        <a href="tel:+306944955367" className="flex-1 flex flex-col items-center justify-center gap-2 group hover:bg-white/5 transition-colors duration-300">
-          <span className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300">Call Us</span>
+        </motion.button>
+        <motion.a
+          href="tel:+306944955367"
+          whileTap={{ scale: 0.94, backgroundColor: 'rgba(255,255,255,0.08)' }}
+          transition={{ type: 'spring', stiffness: 450, damping: 28 }}
+          className="flex-1 flex flex-col items-center justify-center gap-2 group hover:bg-white/5 transition-colors duration-300"
+        >
+          <motion.span
+            className="font-serif text-3xl text-porcelain group-hover:text-gold transition-colors duration-300"
+            whileTap={{ color: '#C9A96E' }}
+            transition={{ duration: 0.15 }}
+          >Call Us</motion.span>
           <span className="text-[10px] tracking-[0.3em] text-porcelain/50 uppercase">+30 694 495 5367</span>
-        </a>
+        </motion.a>
       </nav>
     </section>
   )
