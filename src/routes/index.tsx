@@ -95,59 +95,48 @@ function Home() {
 // ─── VideoHero ───────────────────────────────────────────────────────────────
 
 function VideoHero() {
-  const overlayRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const el = overlayRef.current
-    if (!el) return
-    let prevY = 0
-    let velocity = 0
+    const canvas = canvasRef.current
+    const video = videoRef.current
+    if (!canvas || !video) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
     let rafId = 0
-
-    const momentum = () => {
-      if (Math.abs(velocity) < 0.5) return
-      window.scrollBy(0, velocity)
-      velocity *= 0.92
-      rafId = requestAnimationFrame(momentum)
+    const draw = () => {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+      rafId = requestAnimationFrame(draw)
     }
-    const onStart = (e: TouchEvent) => {
-      prevY = e.touches[0].clientY
-      velocity = 0
-      cancelAnimationFrame(rafId)
-    }
-    const onMove = (e: TouchEvent) => {
-      const y = e.touches[0].clientY
-      velocity = prevY - y
-      window.scrollBy(0, velocity)
-      prevY = y
-    }
-    const onEnd = () => { rafId = requestAnimationFrame(momentum) }
-
-    el.addEventListener('touchstart', onStart, { passive: true })
-    el.addEventListener('touchmove', onMove, { passive: true })
-    el.addEventListener('touchend', onEnd, { passive: true })
+    const start = () => { if (!rafId) draw() }
+    video.addEventListener('canplay', start)
+    if (video.readyState >= 3) start()
     return () => {
-      el.removeEventListener('touchstart', onStart)
-      el.removeEventListener('touchmove', onMove)
-      el.removeEventListener('touchend', onEnd)
+      video.removeEventListener('canplay', start)
       cancelAnimationFrame(rafId)
     }
   }, [])
 
   return (
-    <section className="relative w-full h-screen bg-ink">
+    <section className="relative w-full h-screen bg-ink overflow-hidden">
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        ref={videoRef}
+        src={`${BASE}hero.mp4`}
         autoPlay
         muted
         loop
         playsInline
-        disablePictureInPicture
-        style={{ pointerEvents: 'none' } as CSSProperties}
-      >
-        <source src={`${BASE}hero.mp4`} type="video/mp4" />
-      </video>
-      <div ref={overlayRef} className="absolute inset-0 z-10" />
+        style={{ position: 'absolute', opacity: 0, width: 1, height: 1 } as CSSProperties}
+      />
+      <canvas
+        ref={canvasRef}
+        width={720}
+        height={802}
+        className="absolute inset-0 w-full h-full"
+        style={{ objectFit: 'cover' } as CSSProperties}
+      />
     </section>
   )
 }
