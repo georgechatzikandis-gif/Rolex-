@@ -96,7 +96,7 @@ function Home() {
 
 function VideoHero() {
   return (
-    <section className="relative w-full h-screen bg-ink flex items-center justify-center overflow-hidden touch-pan-y">
+    <section className="relative w-full h-screen bg-ink flex items-center justify-center">
       <video
         className="h-full w-full object-contain pointer-events-none"
         autoPlay
