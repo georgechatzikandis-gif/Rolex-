@@ -81,8 +81,7 @@ const EASE = [0.25, 0.46, 0.45, 0.94] as const
 function Home() {
   return (
     <main className="bg-ink text-porcelain">
-      <TopBar />
-      <VideoHero />
+      <HeroSection />
       {WATCHES.map((w, i) =>
         w.layout === 'dark-full'
           ? <DarkSection key={i} watch={w} />
@@ -92,9 +91,10 @@ function Home() {
   )
 }
 
-// ─── VideoHero ───────────────────────────────────────────────────────────────
+// ─── HeroSection ─────────────────────────────────────────────────────────────
+// Full-screen hero: video background + nav (Watches | Contact)
 
-function VideoHero() {
+function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -104,7 +104,6 @@ function VideoHero() {
     if (!canvas || !video) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-
     let rafId = 0
     const draw = () => {
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
@@ -120,56 +119,45 @@ function VideoHero() {
   }, [])
 
   return (
-    <section className="relative w-full h-screen bg-ink">
+    <section className="relative w-full h-screen bg-ink flex flex-col">
+      {/* Video background */}
       <video
         ref={videoRef}
         src={`${BASE}hero.mp4`}
-        autoPlay
-        muted
-        loop
-        playsInline
+        autoPlay muted loop playsInline
         style={{ position: 'absolute', opacity: 0, width: 1, height: 1 } as CSSProperties}
       />
       <canvas
         ref={canvasRef}
-        width={720}
-        height={802}
+        width={720} height={802}
         className="absolute inset-0 w-full h-full"
-        style={{ objectFit: 'contain', pointerEvents: 'none' } as CSSProperties}
+        style={{ objectFit: 'cover', pointerEvents: 'none' } as CSSProperties}
       />
-    </section>
-  )
-}
 
-// ─── TopBar ───────────────────────────────────────────────────────────────────
-
-function TopBar() {
-  return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-ink/90 backdrop-blur-md border-b border-porcelain/10">
-      {/* Brand row */}
-      <div className="flex items-center justify-center gap-4 pt-4 pb-3 border-b border-porcelain/10 select-none">
-        <svg width="20" height="18" viewBox="0 0 30 26" fill="none" className="text-gold">
+      {/* Brand — top */}
+      <div className="relative z-10 flex items-center justify-center gap-4 py-8 border-b border-porcelain/15 bg-ink/60 backdrop-blur-sm select-none">
+        <svg width="22" height="20" viewBox="0 0 30 26" fill="none" className="text-gold">
           <path d="M3 23V13.5L8.5 19L15 5L21.5 19L27 13.5V23H3Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" fill="none" />
           <rect x="3" y="23" width="24" height="2" rx="0.4" fill="currentColor" />
           <circle cx="15" cy="5" r="1.4" fill="currentColor" />
           <circle cx="3" cy="13.5" r="1.4" fill="currentColor" />
           <circle cx="27" cy="13.5" r="1.4" fill="currentColor" />
         </svg>
-        <span className="font-serif tracking-[0.35em] text-sm text-porcelain/80" style={{ letterSpacing: '0.35em' }}>PERPETUAL</span>
+        <span className="font-serif tracking-[0.35em] text-base text-porcelain/90" style={{ letterSpacing: '0.35em' }}>PERPETUAL</span>
       </div>
 
-      {/* Nav banner — two full-width sections */}
-      <nav className="flex">
-        <button className="flex-1 flex flex-col items-center justify-center gap-1 py-5 hover:bg-porcelain/5 transition-colors duration-300 border-r border-porcelain/10 group">
-          <span className="font-serif text-xl text-porcelain/90 group-hover:text-porcelain tracking-wide">Watches</span>
-          <span className="text-[9px] tracking-[0.3em] text-porcelain/35 uppercase group-hover:text-gold transition-colors duration-300">Explore Collection</span>
+      {/* Nav — fills remaining space */}
+      <nav className="relative z-10 flex flex-1">
+        <button className="flex-1 flex flex-col items-center justify-center gap-2 bg-ink/50 hover:bg-ink/70 transition-colors duration-400 border-r border-porcelain/15 group backdrop-blur-sm">
+          <span className="font-serif text-3xl text-porcelain/90 group-hover:text-porcelain">Watches</span>
+          <span className="text-[10px] tracking-[0.3em] text-porcelain/40 uppercase group-hover:text-gold transition-colors duration-300">Explore Collection</span>
         </button>
-        <button className="flex-1 flex flex-col items-center justify-center gap-1 py-5 hover:bg-porcelain/5 transition-colors duration-300 group">
-          <span className="font-serif text-xl text-porcelain/90 group-hover:text-porcelain tracking-wide">Contact</span>
-          <span className="text-[9px] tracking-[0.3em] text-porcelain/35 uppercase group-hover:text-gold transition-colors duration-300">Get in Touch</span>
+        <button className="flex-1 flex flex-col items-center justify-center gap-2 bg-ink/50 hover:bg-ink/70 transition-colors duration-400 group backdrop-blur-sm">
+          <span className="font-serif text-3xl text-porcelain/90 group-hover:text-porcelain">Contact</span>
+          <span className="text-[10px] tracking-[0.3em] text-porcelain/40 uppercase group-hover:text-gold transition-colors duration-300">Get in Touch</span>
         </button>
       </nav>
-    </header>
+    </section>
   )
 }
 
