@@ -145,18 +145,30 @@ function VideoHero() {
 
 function TopBar() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-8 py-5">
-      <h1
-        className="font-serif tracking-[0.35em] text-lg text-porcelain/90 select-none"
-        style={{ letterSpacing: '0.35em' }}
-      >
-        PERPETUAL
-      </h1>
+    <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-10 py-7 bg-ink/75 backdrop-blur-md border-b border-porcelain/10">
+      {/* Logo + brand */}
+      <div className="flex items-center gap-4 select-none">
+        <svg width="30" height="26" viewBox="0 0 30 26" fill="none" className="text-gold">
+          <path
+            d="M3 23V13.5L8.5 19L15 5L21.5 19L27 13.5V23H3Z"
+            stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" fill="none"
+          />
+          <rect x="3" y="23" width="24" height="2" rx="0.4" fill="currentColor" />
+          <circle cx="15" cy="5" r="1.4" fill="currentColor" />
+          <circle cx="3" cy="13.5" r="1.4" fill="currentColor" />
+          <circle cx="27" cy="13.5" r="1.4" fill="currentColor" />
+        </svg>
+        <h1 className="font-serif tracking-[0.32em] text-base text-porcelain/90" style={{ letterSpacing: '0.32em' }}>
+          PERPETUAL
+        </h1>
+      </div>
+
+      {/* Nav */}
       <nav className="flex items-center gap-8">
-        <button className="text-[10px] tracking-[0.3em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300">
+        <button className="text-[11px] tracking-[0.28em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300">
           Watches
         </button>
-        <button className="text-[10px] tracking-[0.3em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300 border border-porcelain/20 hover:border-porcelain/60 px-4 py-2">
+        <button className="text-[11px] tracking-[0.28em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300 border border-porcelain/25 hover:border-porcelain/70 px-5 py-2.5">
           Contact
         </button>
       </nav>
