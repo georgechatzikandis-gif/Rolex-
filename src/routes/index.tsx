@@ -145,10 +145,10 @@ function VideoHero() {
 
 function TopBar() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-10 py-7 bg-ink/75 backdrop-blur-md border-b border-porcelain/10">
+    <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-8 py-6 bg-ink/85 backdrop-blur-md border-b border-porcelain/10">
       {/* Logo + brand */}
       <div className="flex items-center gap-4 select-none">
-        <svg width="30" height="26" viewBox="0 0 30 26" fill="none" className="text-gold">
+        <svg width="34" height="30" viewBox="0 0 30 26" fill="none" className="text-gold">
           <path
             d="M3 23V13.5L8.5 19L15 5L21.5 19L27 13.5V23H3Z"
             stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" fill="none"
@@ -158,17 +158,17 @@ function TopBar() {
           <circle cx="3" cy="13.5" r="1.4" fill="currentColor" />
           <circle cx="27" cy="13.5" r="1.4" fill="currentColor" />
         </svg>
-        <h1 className="font-serif tracking-[0.32em] text-base text-porcelain/90" style={{ letterSpacing: '0.32em' }}>
+        <h1 className="font-serif tracking-[0.32em] text-lg text-porcelain/90" style={{ letterSpacing: '0.32em' }}>
           PERPETUAL
         </h1>
       </div>
 
       {/* Nav */}
-      <nav className="flex items-center gap-8">
-        <button className="text-[11px] tracking-[0.28em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300">
+      <nav className="flex items-center gap-4">
+        <button className="text-sm tracking-[0.22em] text-porcelain/75 uppercase hover:text-porcelain transition-colors duration-300 px-6 py-4 min-w-[110px]">
           Watches
         </button>
-        <button className="text-[11px] tracking-[0.28em] text-porcelain/60 uppercase hover:text-porcelain transition-colors duration-300 border border-porcelain/25 hover:border-porcelain/70 px-5 py-2.5">
+        <button className="text-sm tracking-[0.22em] text-porcelain uppercase hover:text-gold transition-colors duration-300 border border-porcelain/40 hover:border-gold px-6 py-4 min-w-[110px]">
           Contact
         </button>
       </nav>
