@@ -135,7 +135,7 @@ function VideoHero() {
         width={720}
         height={802}
         className="absolute inset-0 w-full h-full"
-        style={{ objectFit: 'cover' } as CSSProperties}
+        style={{ objectFit: 'contain' } as CSSProperties}
       />
     </section>
   )
