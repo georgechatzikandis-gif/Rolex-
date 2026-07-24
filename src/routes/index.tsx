@@ -96,13 +96,14 @@ function Home() {
 
 function VideoHero() {
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-screen bg-ink flex items-center justify-center overflow-hidden">
       <video
-        className="absolute inset-0 w-full h-full object-cover"
+        className="h-full w-full object-contain pointer-events-none"
         autoPlay
         muted
         loop
         playsInline
+        disablePictureInPicture
       >
         <source src={`${BASE}hero.mp4`} type="video/mp4" />
       </video>
