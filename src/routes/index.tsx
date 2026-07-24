@@ -26,40 +26,40 @@ const WATCHES: Watch[] = [
     image: `${BASE}watches/gmt-steel.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Oystersteel',
-    headline: 'Robust and\nFunctional',
-    body: 'The ideal watch for criss-crossing the globe — tracking two time zones simultaneously, without compromise.',
+    headline: 'Built\nTough',
+    body: '',
     layout: 'split',
   },
   {
     image: `${BASE}watches/gmt-twotone.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Rolesor',
-    headline: 'On World Time,\nCrossing Meridians',
-    body: 'Oystersteel and yellow gold, unified in purpose. A globe-trotter\'s instrument for those venturing into new horizons.',
+    headline: 'World\nTime',
+    body: '',
     layout: 'split-reverse',
   },
   {
     image: `${BASE}watches/gmt-gold.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Yellow Gold',
-    headline: 'A Two-Colour\nVisual Hallmark',
-    body: 'Mastering materials in every detail, every light. The first to bear a Cerachrom bezel insert in two colours.',
+    headline: 'Two\nColours',
+    body: '',
     layout: 'split',
   },
   {
     image: `${BASE}watches/gmt-green.jpg`,
     model: 'GMT-MASTER II',
     tag: 'Meteorite',
-    headline: 'Travel Around\nthe Clock',
-    body: 'Never losing touch. Never losing time. For those who travel frequently and want to nurture personal connections across the world.',
+    headline: 'Always\nReady',
+    body: '',
     layout: 'dark-full',
   },
   {
     image: `${BASE}watches/rm-01-black.jpg`,
     model: 'RM 74-01',
-    tag: 'Titanium Tourbillon',
-    headline: 'The Skeleton\nPerfected',
-    body: 'Carbon TPT and ceramic stripped to the essence of mechanical poetry. A flying tourbillon beating at its heart.',
+    tag: 'Titanium',
+    headline: 'Pure\nMechanism',
+    body: '',
     layout: 'dark-full',
   },
   {
@@ -67,7 +67,7 @@ const WATCHES: Watch[] = [
     model: 'RM 74-02',
     tag: 'White Ceramic',
     headline: 'Radical\nHorology',
-    body: 'White ceramic case, rose gold bridges — an open-heart tourbillon that reveals the full architecture of time.',
+    body: '',
     layout: 'dark-full',
   },
 ]
@@ -312,15 +312,6 @@ function TextBlock({ watch, inView }: { watch: Watch; inView: boolean }) {
       >
         {watch.headline}
       </motion.h2>
-
-      <motion.p
-        className="font-sans text-sm text-mist leading-relaxed max-w-sm mb-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, delay: 0.55, ease: EASE }}
-      >
-        {watch.body}
-      </motion.p>
 
       <motion.div
         className="flex items-center gap-4"
