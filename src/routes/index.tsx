@@ -183,28 +183,34 @@ function ViberButton() {
 
       {/* Popup */}
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-72 rounded-2xl overflow-hidden shadow-2xl" style={{ background: '#1a1a2e' }}>
+        <div className="fixed bottom-24 right-4 z-50 rounded-2xl overflow-hidden shadow-2xl" style={{ background: '#1a1a2e', width: 'min(340px, calc(100vw - 2rem))' }}>
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3" style={{ background: '#7360F2' }}>
-            <div className="flex items-center gap-2">
-              <svg width="18" height="18" viewBox="0 0 32 32" fill="white">
+          <div className="flex items-center justify-between px-5 py-4" style={{ background: '#7360F2' }}>
+            <div className="flex items-center gap-3">
+              <svg width="24" height="24" viewBox="0 0 32 32" fill="white">
                 <path d="M16 2C8.27 2 2 8.05 2 15.5c0 3.6 1.43 6.87 3.76 9.3L4 28l3.6-1.1A13.8 13.8 0 0016 29c7.73 0 14-6.05 14-13.5S23.73 2 16 2zm6.3 17.4c-.28.8-1.6 1.52-2.22 1.6-.56.08-1.27.12-2.04-.13-.47-.15-1.07-.35-1.84-.68-3.22-1.38-5.3-4.6-5.46-4.81-.16-.22-1.3-1.73-1.3-3.3 0-1.57.82-2.35 1.12-2.67.3-.33.65-.41.87-.41h.62c.2 0 .47.08.73.56.28.5 1.28 3.13 1.38 3.36.1.22.17.48.03.77-.13.3-.2.48-.4.73l-.43.5c-.18.17-.37.36-.16.7.22.35.97 1.6 2.08 2.6 1.43 1.27 2.64 1.66 3.01 1.85.37.18.58.15.8-.09l.73-.87c.23-.3.46-.24.77-.14l2.45 1.15c.28.13.47.2.54.32.08.22-.06.9-.27 1.46z"/>
               </svg>
-              <span className="text-white font-medium text-sm tracking-wide">Viber</span>
+              <div>
+                <div className="text-white font-semibold text-base">Viber</div>
+                <div className="text-white/70 text-xs">Συνήθως απαντάμε άμεσα</div>
+              </div>
             </div>
-            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white text-lg leading-none">✕</button>
+            <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white text-xl leading-none w-8 h-8 flex items-center justify-center">✕</button>
           </div>
 
           {/* Body */}
-          <div className="px-5 py-6">
-            <p className="text-porcelain/80 text-sm leading-relaxed mb-5">
+          <div className="px-6 py-7">
+            <p className="text-porcelain/80 text-base leading-relaxed mb-6">
               Έχετε ερωτήσεις για κάποιο ρολόι; Στείλτε μας μήνυμα στο Viber και θα σας απαντήσουμε άμεσα.
             </p>
             <a
               href="viber://chat?number=+306944955367"
-              className="block w-full text-center text-white text-sm font-medium tracking-widest uppercase py-3.5 rounded-xl transition-opacity duration-200 hover:opacity-90"
+              className="flex items-center justify-center gap-3 w-full text-center text-white text-sm font-semibold tracking-widest uppercase py-4 rounded-xl transition-opacity duration-200 hover:opacity-90"
               style={{ background: '#7360F2' }}
             >
+              <svg width="18" height="18" viewBox="0 0 32 32" fill="white">
+                <path d="M16 2C8.27 2 2 8.05 2 15.5c0 3.6 1.43 6.87 3.76 9.3L4 28l3.6-1.1A13.8 13.8 0 0016 29c7.73 0 14-6.05 14-13.5S23.73 2 16 2zm6.3 17.4c-.28.8-1.6 1.52-2.22 1.6-.56.08-1.27.12-2.04-.13-.47-.15-1.07-.35-1.84-.68-3.22-1.38-5.3-4.6-5.46-4.81-.16-.22-1.3-1.73-1.3-3.3 0-1.57.82-2.35 1.12-2.67.3-.33.65-.41.87-.41h.62c.2 0 .47.08.73.56.28.5 1.28 3.13 1.38 3.36.1.22.17.48.03.77-.13.3-.2.48-.4.73l-.43.5c-.18.17-.37.36-.16.7.22.35.97 1.6 2.08 2.6 1.43 1.27 2.64 1.66 3.01 1.85.37.18.58.15.8-.09l.73-.87c.23-.3.46-.24.77-.14l2.45 1.15c.28.13.47.2.54.32.08.22-.06.9-.27 1.46z"/>
+              </svg>
               Έναρξη Συνομιλίας
             </a>
           </div>
