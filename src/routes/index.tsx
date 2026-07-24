@@ -100,18 +100,37 @@ function VideoHero() {
   useEffect(() => {
     const el = overlayRef.current
     if (!el) return
-    let startY = 0
-    const onStart = (e: TouchEvent) => { startY = e.touches[0].clientY }
-    const onMove = (e: TouchEvent) => {
-      const delta = startY - e.touches[0].clientY
-      startY = e.touches[0].clientY
-      window.scrollBy(0, delta)
+    let prevY = 0
+    let velocity = 0
+    let rafId = 0
+
+    const momentum = () => {
+      if (Math.abs(velocity) < 0.5) return
+      window.scrollBy(0, velocity)
+      velocity *= 0.92
+      rafId = requestAnimationFrame(momentum)
     }
+    const onStart = (e: TouchEvent) => {
+      prevY = e.touches[0].clientY
+      velocity = 0
+      cancelAnimationFrame(rafId)
+    }
+    const onMove = (e: TouchEvent) => {
+      const y = e.touches[0].clientY
+      velocity = prevY - y
+      window.scrollBy(0, velocity)
+      prevY = y
+    }
+    const onEnd = () => { rafId = requestAnimationFrame(momentum) }
+
     el.addEventListener('touchstart', onStart, { passive: true })
     el.addEventListener('touchmove', onMove, { passive: true })
+    el.addEventListener('touchend', onEnd, { passive: true })
     return () => {
       el.removeEventListener('touchstart', onStart)
       el.removeEventListener('touchmove', onMove)
+      el.removeEventListener('touchend', onEnd)
+      cancelAnimationFrame(rafId)
     }
   }, [])
 
