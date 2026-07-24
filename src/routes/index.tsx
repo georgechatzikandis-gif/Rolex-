@@ -80,7 +80,7 @@ const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
 function Home() {
   return (
-    <main className="bg-ink text-porcelain overflow-x-hidden">
+    <main className="bg-ink text-porcelain">
       <TopBar />
       <VideoHero />
       {WATCHES.map((w, i) =>
