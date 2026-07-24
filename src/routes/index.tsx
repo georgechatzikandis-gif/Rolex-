@@ -308,14 +308,14 @@ function ViberButton() {
 
   return (
     <>
-      {/* Floating circle — filled chat bubble */}
+      {/* Floating circle */}
       <button
         onClick={() => setOpen(o => !o)}
         aria-label="Chat"
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center active:scale-95 transition-transform duration-150"
         style={{ background: '#7360F2' }}
       >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
           <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
         </svg>
       </button>
@@ -323,84 +323,96 @@ function ViberButton() {
       {/* Popup */}
       {open && (
         <div
-          className="fixed bottom-24 right-3 left-3 z-50 rounded-2xl overflow-hidden shadow-2xl"
-          style={{ background: '#1e2a4a', maxWidth: 460, margin: '0 auto' }}
+          className="fixed bottom-24 right-3 left-3 z-50 overflow-hidden shadow-2xl"
+          style={{ background: '#1C2647', maxWidth: 460, margin: '0 auto', borderRadius: 18 }}
         >
-          {/* Header */}
+          {/* ── Header ── */}
           <div
-            className="flex items-center gap-4 px-5 py-4"
-            style={{ background: 'linear-gradient(135deg, #6B58EE 0%, #9B8AFF 100%)' }}
+            className="flex items-center gap-3 px-4 py-4"
+            style={{ background: 'linear-gradient(to right, #7155EE, #8B72FF)' }}
           >
-            {/* Gray avatar */}
             <div
-              className="w-12 h-12 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-sm"
-              style={{ background: 'rgba(255,255,255,0.22)' }}
+              className="w-12 h-12 rounded-full shrink-0 flex items-center justify-center text-white font-bold text-sm"
+              style={{ background: 'rgba(255,255,255,0.25)' }}
             >
               PW
             </div>
-            <div className="flex-1">
-              <div className="text-white font-bold text-base leading-tight">Perpetual Watches</div>
-              <div className="flex items-center gap-1.5 mt-1">
+            <div>
+              <p className="text-white font-bold text-[15px] leading-snug">Perpetual Watches</p>
+              <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
-                <span className="text-white/75 text-xs">Συνήθως απαντάμε σύντομα</span>
+                <span className="text-white/75 text-[12px]">Συνήθως απαντάμε σύντομα</span>
               </div>
             </div>
           </div>
 
-          {/* Body */}
-          <div className="px-4 pt-5 pb-5" style={{ background: '#1e2a4a' }}>
+          {/* ── Body ── */}
+          <div className="px-4 py-5" style={{ background: '#1C2647' }}>
 
-            {/* Chat bubble row — avatar bottom-left, bubble right */}
-            <div className="flex items-end gap-3 mb-5">
+            {/* Message row: avatar bottom-left, bubble right */}
+            <div className="flex items-end gap-2 mb-4">
               <div
-                className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-[11px]"
+                className="w-8 h-8 rounded-full shrink-0 flex items-center justify-center text-white font-bold text-[10px]"
                 style={{ background: '#7360F2' }}
               >
                 PW
               </div>
               <div
-                className="rounded-2xl rounded-bl-none px-4 py-3 text-white text-sm leading-relaxed flex-1"
-                style={{ background: '#2d3d65' }}
+                className="flex-1 rounded-2xl px-4 py-3 text-white text-[14px] leading-snug"
+                style={{ background: '#263260' }}
               >
                 Γεια σας! 👋 Πώς μπορούμε να σας βοηθήσουμε;
               </div>
             </div>
 
-            {/* Name input */}
-            <input
-              type="text"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              placeholder="Το όνομά σας"
-              className="w-full rounded-xl px-4 py-3 text-white text-sm mb-3 outline-none"
-              style={{
-                background: 'rgba(255,255,255,0.05)',
-                border: '1.5px solid #7360F2',
-                color: 'white',
-              } as CSSProperties}
-            />
+            {/* Name */}
+            <div className="mb-3">
+              <input
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                placeholder="Το όνομά σας"
+                style={{
+                  width: '100%',
+                  background: '#1C2647',
+                  border: '1.5px solid #7155EE',
+                  borderRadius: 12,
+                  padding: '12px 16px',
+                  color: 'white',
+                  fontSize: 14,
+                  outline: 'none',
+                } as CSSProperties}
+              />
+            </div>
 
-            {/* Message textarea */}
-            <textarea
-              value={msg}
-              onChange={e => setMsg(e.target.value)}
-              placeholder="Γράψτε το μήνυμά σας..."
-              rows={4}
-              className="w-full rounded-xl px-4 py-3 text-white text-sm mb-4 outline-none resize-none"
-              style={{
-                background: 'rgba(255,255,255,0.05)',
-                border: '1.5px solid rgba(115,96,242,0.5)',
-                color: 'white',
-              } as CSSProperties}
-            />
+            {/* Message */}
+            <div className="mb-4">
+              <textarea
+                value={msg}
+                onChange={e => setMsg(e.target.value)}
+                placeholder="Γράψτε το μήνυμά σας..."
+                rows={4}
+                style={{
+                  width: '100%',
+                  background: '#1C2647',
+                  border: '1.5px solid rgba(113,85,238,0.55)',
+                  borderRadius: 12,
+                  padding: '12px 16px',
+                  color: 'white',
+                  fontSize: 14,
+                  outline: 'none',
+                  resize: 'none',
+                } as CSSProperties}
+              />
+            </div>
 
-            {/* Send button */}
+            {/* Send */}
             <button
               onClick={handleSend}
-              className="w-full flex items-center justify-center gap-2 py-4 rounded-xl text-white font-semibold text-sm active:opacity-80 transition-opacity"
-              style={{ background: '#7360F2' }}
+              className="w-full flex items-center justify-center gap-2 text-white font-semibold text-[14px] active:opacity-80 transition-opacity"
+              style={{ background: '#7155EE', borderRadius: 12, padding: '14px 0' }}
             >
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="white">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
               </svg>
               Αποστολή
